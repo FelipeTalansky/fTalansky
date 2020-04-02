@@ -15,12 +15,8 @@ public class Main {
 		Instant start = Instant.now();
 		Locale l = new Locale("pt","BR");
 		NumberFormat nf = NumberFormat.getInstance(l);
-		StringBuilder res = new StringBuilder();
-		String r;
-		res.append("NM_SUBPRODUTO");
-		res.append(';');
-		res.append("RESULTADO");
-		res.append('\n');
+		String r = "NM_SUBPRODUTO"+';'+"RESULTADO" + '\n';
+		String r2;
 		int i = 1;
 		String Mercado = "DadosMercado.csv";
 		File merc = new File(Mercado);
@@ -36,7 +32,7 @@ public class Main {
 					String[] values = data.split(";");
 					long dias = 0;
 
-					// calcula diferença entre datas
+					// calcula diferenÃ§a entre datas
 					try {
 						dias = (formatter.parse(values[2]).getTime() - formatter.parse(values[1]).getTime()) / 1000 / 60
 								/ 60 / 24;
@@ -55,15 +51,12 @@ public class Main {
 						}
 					}
 					inputM.close();
-					r=nf.format(resultado).toString();
-					res.append(values[9]);
-					res.append(';');
-					res.append(r);
-					res.append('\n');
+					r2=nf.format(resultado).toString();
+					r=r+values[9]+';'+r2+'\n';
 					i++;
 				}
 				inputO.close();
-				writer.write(res.toString());
+				writer.write(r);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
